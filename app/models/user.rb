@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :exhanges
-  has_many :items, through: :exchanges
+  has_many :exchanges
+  has_many :items
 
-  validates :fullname, length: {maximum: 50}, presence: true
+  validates :name, length: {maximum: 50}, presence: true
 end
