@@ -1,0 +1,9 @@
+<h2><%= @item.title %></h2>
+<h3>Posted by <%= @item.user.name %></h3>
+<% if policy(@item).update? %>
+  <%= link_to 'Edit', edit_item_path(@item) %>
+<% end %>
+
+ <% if policy(@item).destroy? %>
+  <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
