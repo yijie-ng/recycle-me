@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :exchange
 
   validates :title, presence: true
   validates :description, presence: true

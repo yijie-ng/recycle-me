@@ -6,6 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 require 'faker'
 
+User.create!(
+  name: 'test',
+  email: 'test@test.com',
+  phone_number: '123456789',
+  password: 'ltes12'
+)
+
 2.times do
   User.create!(
     name: Faker::Name.name,
@@ -46,9 +53,8 @@ Exchange.create!(
 Exchange.create!(
   location: Faker::Lorem.sentence(word_count: 3),
   method: Faker::Lorem.sentence(word_count: 1),
-  time_slot: 1000,
+  time_slot: 1200,
   user_id: 2,
   item_id: 2,
 )
-
 puts "Exchange created"
