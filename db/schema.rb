@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_11_27_093512) do
   create_table "exchanges", force: :cascade do |t|
     t.string "location"
     t.string "method"
-    t.datetime "time_slot"
+    t.string "time_slot"
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
