@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex justify-content-center">
+<div class="container-fluid d-flex justify-content-center mt-4">
     <div class="col-6">
       <h2>Sign up</h2>
 
@@ -6,10 +6,14 @@
         <%= f.error_notification %>
 
         <div class="form-inputs">
+          <%= f.input :name,
+                      required: true %>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "email" }%>
+          <%= f.input :phone_number,
+                      required: true %>
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -20,7 +24,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, "Sign up", class: "btn btn-success" %>
         </div>
       <% end %>
 
