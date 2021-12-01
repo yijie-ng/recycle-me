@@ -1,6 +1,10 @@
 class ExchangesController < ApplicationController
   before_action :set_item, only: [:new, :create, :update]
 
+  def index
+    @exchanges = policy_scope(Exchange).order(created_at: :desc)
+  end
+
   def new
     @exchange = Exchange.new
   end
