@@ -7,13 +7,13 @@
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://images.unsplash.com/photo-1421757381940-5d269570b21c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8ZGV2aWNlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" class="d-block w-100" alt="...">
+        <%= image_tag "placeholder-1.jpeg", class: "d-block w-100", alt: "user uploaded image 1" %>
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1512054502232-10a0a035d672?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRldmljZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="d-block w-100" alt="...">
+        <%= image_tag "placeholder-2.jpeg", class: "d-block w-100", alt: "user uploaded image 2" %>
       </div>
       <div class="carousel-item">
-        <img src="https://images.unsplash.com/photo-1587033411391-5d9e51cce126?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGRldmljZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="d-block w-100" alt="...">
+        <%= image_tag "placeholder-3.jpeg", class: "d-block w-100", alt: "user uploaded image 3" %>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
@@ -29,9 +29,23 @@
   <div class="row">
     <div class="col-8">
       <div class="card item-show-card bg-light mb-3 mt-4">
-        <div class="card-body">
-          <h3 class="card-title"><%= @item.title %></h3>
-          <h6>Condition: <%= @item.condition %></h6>
+        <div class="card-body m-2">
+          <div class="card-title">
+            <h3><%= @item.title %></h3>
+          </div>
+          <div class="card-subtitle text-muted">
+            <% ary = @item.created_at.to_s.split(' ') %>
+            <h6>Posted on <%= ary.first %></h6>
+          </div>
+          <div class="card-text mt-3 mb-2 border-bottom d-flex justify-content-start">
+            <h5 class="mr-4 mb-3"><i class="far fa-check-square"></i> <%= @item.condition %></h5>
+            <h5 class="mr-4 mb-3"><i class="far fa-calendar-alt"></i> <%= @item.year_made %></h5>
+            <h5 class="mb-3"><i class="fas fa-shopping-cart"></i> <%= @item.number_available %></h5>
+          </div>
+          <div class="card-text mt-3">
+            <h2>Description</h2>
+            <p><%= @item.description %></p>
+          </div>
         </div>
       </div>
     </div>
@@ -39,10 +53,14 @@
     <div class="col-4">
       <div class="card item-show-card bg-light mb-3 mt-4">
         <div class="card-body">
-          <h5 class="card-title"><%= @item.user.name %></h5>
+          <div class="card-title d-flex justify-content-start align-items-center mb-3">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
+            <h5 class="ml-2"><%= @item.user.name %></h5>
+          </div>
           <% if policy(@item).update? && policy(@item).destroy? %>
-            <div><%= link_to 'Edit Listing', edit_item_path(@item) %></div>
-            <div><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            <%= link_to 'View exchange requests', '#', class: "btn btn-success mb-4", style: "width: 100%" %>
+            <div><i class="far fa-edit mr-2"></i><%= link_to 'Edit Listing', edit_item_path(@item), class: "text-decoration-none" %></div>
+            <div class="delete mt-2"><i class="far fa-trash-alt mr-2 text-danger"></i><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger text-decoration-none" %></div>
           <% else %>
             <p>Put exchange form below:</p>
           <% end %>
