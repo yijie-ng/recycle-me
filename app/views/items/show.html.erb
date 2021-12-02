@@ -52,17 +52,27 @@
 
     <div class="col-4">
       <div class="card item-show-card bg-light mb-3 mt-4">
-        <div class="card-body">
-          <div class="card-title d-flex justify-content-start align-items-center mb-3">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar" %>
-            <h5 class="ml-2"><%= @item.user.name %></h5>
+        <div class="card-body m-2">
+          <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar mb-3" %>
+            <h5 class="ml-2 mb-3"><%= @item.user.name %></h5>
           </div>
           <% if policy(@item).update? && policy(@item).destroy? %>
             <%= link_to 'View exchange requests', '#', class: "btn btn-success mb-4", style: "width: 100%" %>
             <div><i class="far fa-edit mr-2"></i><%= link_to 'Edit Listing', edit_item_path(@item), class: "text-decoration-none" %></div>
             <div class="delete mt-2"><i class="far fa-trash-alt mr-2 text-danger"></i><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger text-decoration-none" %></div>
           <% else %>
-            <p>Put exchange form below:</p>
+            <div class="exchange-form mt-4">
+              <h3>Exchange request</h3>
+                <div class="mt-3">
+                  <%= simple_form_for [ @item, Exchange.new ] do |f| %>
+                    <%= f.input :method, collection: ['Delivery', 'Meet-up'] %>
+                    <%= f.input :location, label: 'Meet-up Location/Delivery Address' %>
+                    <%= f.input :time_slot, label: 'Meet-up Date & Time', hint: 'YYYY/MM/DD, HH:MM AM/PM (If delivery, "NA")' %>
+                    <%= f.submit 'Send exchange request', class: "btn btn-success", style: "width: 100%" %>
+                  <% end %>
+                </div>
+            </div>
           <% end %>
         </div>
       </div>
