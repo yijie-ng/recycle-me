@@ -1,17 +1,18 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
-  color: #379683
+  background:$white;
+  font-family: Manrope;
 }
 
 #brand {
-  color: #379863;
+  color: $green;
   font-weight: bold;
   align-content: center;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  color: $green;
 }
 
 .navbar-lewagon .navbar-brand img {
