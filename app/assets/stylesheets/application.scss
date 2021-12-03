@@ -11,4 +11,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "components/carousel"
+@import "components/carousel";
+
+@import "config/text";
+
+h1 h2 h3 h4 h5 {
+  background-color: blue;
+}
