@@ -1,30 +1,31 @@
 <div class="container-fluid align-justify-center">
 
-  <div class="text-center text-success font-weight-bold py-3">
-    <h4>GIVE AWAY PRE-OWNED ELECTRONICS </h4>
-    More preamable, introduction
+  <div class="text-center py-3">
+    <h4>Looking to pass on your pre-loved electronics?</h4>
+    <h1>3 Easy Steps</h1>
+
   </div>
 
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= image_tag "unsplash-1.jpeg", class: "d-block w-100", alt: "First slide" %>
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Lorem sdfjljsd sdfjljdfuj </h5>
+        <%= image_tag "unsplash-1.jpeg", class: "w-100", alt: "First slide" %>
+          <div class="carousel-caption">
+            <h1>List Item</h1>
+            <p>jdlsfj sfjljdsj sdljsdflj</p>
+          </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "unsplash-2.jpeg", class: "w-100", alt: "Second slide" %>
+          <div class="carousel-caption">
+            <h1>Schedule A Meetup</h1>
             <p>jdlsfj sfjljdsj sdljsdflj </p>
           </div>
       </div>
       <div class="carousel-item">
-        <%= image_tag "unsplash-2.jpeg", class: "d-block w-100", alt: "Second slide" %>
+        <%= image_tag "unsplash-2.jpeg", class: "w-100", alt: "Third slide" %>
           <div class="carousel-caption d-none d-md-block">
-            <h5>Lorem sdfjljsd sdfjljdfuj </h5>
-            <p>jdlsfj sfjljdsj sdljsdflj </p>
-          </div>
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="..." alt="Third slide">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Lorem sdfjljsd sdfjljdfuj </h5>
+            <h1>Pass It On</h1>
             <p>jdlsfj sfjljdsj sdljsdflj </p>
           </div>
       </div>
@@ -41,7 +42,7 @@
 </div>
 
 <div class="container-fluid bg-white">
-  <h2 class="py-3 text-success">All Our Pre-loved Items (<%= @items.length %>)</h2>
+  <h2 class="py-3">All Our Pre-loved Items (<%= @items.length %>)</h2>
       <br>
         <div class="row">
           <% @items.each do |item| %>
