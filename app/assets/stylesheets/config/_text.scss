@@ -1,5 +1,13 @@
 body {
-  font-family: Manrope;
   font-weight: 300;
-  color: red;
+  color: $green;
+}
+
+h1 h2 h3 {
+  font-weight: 500;
+  color: $green;
+}
+
+.carousel-caption {
+  top: 30%;
 }
