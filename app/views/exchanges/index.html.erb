@@ -13,10 +13,7 @@
       <% if @exchange.find_by(item_id: item.id).approved %>
         <p>Item pending for trade</p>
       <% else %>
-        <%= form_for(@exchange.find_by(item_id: item.id), url: exchange_path(@exchange.find_by(item_id: item.id)), method: "patch", remote: true, data: { confirm: "You sure?"}) do |fa| %>
-          <%= fa.hidden_field :approved, :value => true %>
-          <%= fa.submit "Approve", class: "btn btn-small btn-success" %>
-        <% end %>
+        <%= link_to "Approve", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
       <% end %>
       <% else  %>
       <%= false %>
