@@ -2,7 +2,16 @@ class ExchangesController < ApplicationController
   before_action :set_item, only: [:create, :update]
 
   def index
-    @exchanges = policy_scope(Exchange).order(created_at: :desc)
+    # @exchanges = policy_scope(Exchange).order(created_at: :desc) #not sure how to use this currently
+    @exchange = policy_scope(Exchange)
+    @items = policy_scope(Item)
+    @user_exchanges = @exchange.select do |exchange|
+      exchange.user_id == current_user.id
+    end
+    @user_items = @items.select do |item|
+      item.user_id == current_user.id
+    end
+    authorize @exchange
   end
 
   def create
