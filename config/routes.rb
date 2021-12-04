@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   resources :items do
     resources :exchanges, only: [:create]
   end
-  resources :exchanges, only: [:index, :update]
+  resources :exchanges, only: [:index, :update] do
+    member do
+      post 'approve'
+    end
+  end
 end

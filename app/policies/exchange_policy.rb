@@ -16,4 +16,8 @@ class ExchangePolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def approve?
+    true
+  end
 end

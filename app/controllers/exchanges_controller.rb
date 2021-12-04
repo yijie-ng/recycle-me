@@ -25,15 +25,23 @@ class ExchangesController < ApplicationController
     end
   end
 
-  def update
+  # def update
+  #   @exchange = Exchange.find(params[:id])
+  #   if @exchange.update(exchanges_params)
+  #     flash[:success] = "Exchange updated"
+  #     redirect_to exchanges_path
+  #   else
+  #     render exchanges_path
+  #   end
+  #   authorize @exchange
+  # end
+
+  def approve
     @exchange = Exchange.find(params[:id])
-    if @exchange.update(exchanges_params)
-      flash[:success] = "Exchange updated"
-      redirect_to exchanges_path
-    else
-      render exchanges_path
-    end
+    @exchange.approved = true
+    @exchange.save
     authorize @exchange
+    redirect_to exchanges_path, flash: { success: "Message" }
   end
 
   private
