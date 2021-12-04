@@ -1,5 +1,5 @@
 class ExchangesController < ApplicationController
-  before_action :set_item, only: [:create, :update]
+  before_action :set_item, only: [:create]
 
   def index
     # @exchanges = policy_scope(Exchange).order(created_at: :desc) #not sure how to use this currently
@@ -26,16 +26,20 @@ class ExchangesController < ApplicationController
   end
 
   def update
-    if params[:exchange]
-      @exchange.update(exchanges_params)
+    @exchange = Exchange.find(params[:id])
+    if @exchange.update(exchanges_params)
+      flash[:success] = "Exchange updated"
+      redirect_to exchanges_path
+    else
+      render exchanges_path
     end
-      redirect_to item_path(@item)
+    authorize @exchange
   end
 
   private
 
   def exchanges_params
-    params.require(:exchange).permit(:location, :method, :time_slot)
+    params.require(:exchange).permit(:location, :method, :time_slot, :approved)
   end
 
   def set_item
