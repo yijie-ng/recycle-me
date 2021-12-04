@@ -2,7 +2,13 @@
 <h2>My requests</h2>
 <ul>
   <% @user_exchanges.each do |exchange| %>
-    <li><%= @items.find(exchange.item_id).title %> Approval?: <%= exchange.approved %></li>
+    <li><%= @items.find(exchange.item_id).title %>
+    <% if exchange.approved %>
+      <i class="far fa-check-circle"></i>
+    <% else %>
+      <i class="far fa-paper-plane"></i>
+    <% end %>
+    </li>
   <% end %>
 </ul>
 <h2>My items</h2>
