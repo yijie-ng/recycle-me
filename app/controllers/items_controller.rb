@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   # GET /items/:id
   def show
+    @exchanges = Exchange.all
   end
 
   # GET /items/new

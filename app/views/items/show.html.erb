@@ -61,6 +61,8 @@
             <%= link_to 'View exchange requests', '#', class: "btn btn-success mb-4", style: "width: 100%" %>
             <div><i class="far fa-edit mr-2"></i><%= link_to 'Edit Listing', edit_item_path(@item), class: "text-decoration-none" %></div>
             <div class="delete mt-2"><i class="far fa-trash-alt mr-2 text-danger"></i><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger text-decoration-none" %></div>
+          <% elsif @exchanges.map { |exchange| exchange.item_id }.include?(@item.id) %>
+            <div>Sorry! Not available anymore</div>
           <% else %>
             <div class="exchange-form mt-4">
               <h3>Exchange request</h3>
