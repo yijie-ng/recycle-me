@@ -14,15 +14,15 @@
 <h2>My items</h2>
 <ul>
   <% @user_items.each do |item| %>
-    <li><%= item.title %> Requested?: <% if @exchange.find_by(item_id: item.id)%>
-      <%= true %>
+    <li><%= item.title %>
+    <% if @exchange.find_by(item_id: item.id)%>
       <% if @exchange.find_by(item_id: item.id).approved %>
-        <p>Item pending for trade</p>
+        <i class="far fa-check-circle"></i>
       <% else %>
-        <%= link_to "Approve", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
+        <%= link_to "Agree to Trade", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
       <% end %>
       <% else  %>
-      <%= false %>
+      <i class="far fa-paper-plane"></i>
       <% end %>
     </li>
   <% end %>
