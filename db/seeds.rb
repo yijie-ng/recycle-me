@@ -41,7 +41,7 @@ Exchange.create!(
   method: Faker::Lorem.sentence(word_count: 1),
   time_slot: 900,
   user_id: 1,
-  item_id: 1,
+  item_id: 2,
 )
 
 Exchange.create!(
@@ -49,6 +49,14 @@ Exchange.create!(
   method: Faker::Lorem.sentence(word_count: 1),
   time_slot: 1200,
   user_id: 2,
-  item_id: 2,
+  item_id: 5,
+)
+
+Exchange.create!(
+  location: Faker::Lorem.sentence(word_count: 3),
+  method: Faker::Lorem.sentence(word_count: 1),
+  time_slot: 900,
+  user_id: 3,
+  item_id: 8,
 )
 puts "Exchange created"
