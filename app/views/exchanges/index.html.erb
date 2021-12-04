@@ -1,0 +1,13 @@
+<h1>Exchanges</h1>
+<h2>My requests</h2>
+<ul>
+  <% @user_exchanges.each do |exchange| %>
+    <li><%= @items.find(exchange.item_id).title %></li>
+  <% end %>
+</ul>
+<h2>My items</h2>
+<ul>
+  <% @user_items.each do |item| %>
+    <li><%= item.title %></li>
+  <% end %>
+</ul>
