@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :items do
-    resources :exchanges, only: [:create, :update]
+    resources :exchanges, only: [:create]
   end
-  resources :exchanges, only: [:index]
+  resources :exchanges, only: [:index, :update]
 end

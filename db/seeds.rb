@@ -13,6 +13,13 @@ User.create!(
   password: 'test12345'
 )
 
+User.create!(
+  name: 'test2',
+  email: 'test2@test.com',
+  phone_number: '123456789',
+  password: 'test123456'
+)
+
 9.times do
   User.create!(
     name: Faker::Name.name,

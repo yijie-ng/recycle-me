@@ -2,12 +2,25 @@
 <h2>My requests</h2>
 <ul>
   <% @user_exchanges.each do |exchange| %>
-    <li><%= @items.find(exchange.item_id).title %></li>
+    <li><%= @items.find(exchange.item_id).title %> Approval?: <%= exchange.approved %></li>
   <% end %>
 </ul>
 <h2>My items</h2>
 <ul>
   <% @user_items.each do |item| %>
-    <li><%= item.title %></li>
+    <li><%= item.title %> Requested?: <% if @exchange.find_by(item_id: item.id)%>
+      <%= true %>
+      <% if @exchange.find_by(item_id: item.id).approved %>
+        <p>Item pending for trade</p>
+      <% else %>
+        <%= form_for(@exchange.find_by(item_id: item.id), url: exchange_path(@exchange.find_by(item_id: item.id)), method: "patch", remote: true, data: { confirm: "You sure?"}) do |fa| %>
+          <%= fa.hidden_field :approved, :value => true %>
+          <%= fa.submit "Approve", class: "btn btn-small btn-success" %>
+        <% end %>
+      <% end %>
+      <% else  %>
+      <%= false %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
