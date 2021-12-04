@@ -6,15 +6,11 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <%= image_tag "https://images.unsplash.com/photo-1464380573004-8ca85a08751a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", class: "d-block w-100", alt: "user uploaded image 1" %>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag "https://images.unsplash.com/photo-1512054502232-10a0a035d672?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80", class: "d-block w-100", alt: "user uploaded image 2" %>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80", class: "d-block w-100", alt: "user uploaded image 3" %>
-      </div>
+      <% @item.photos.each do |photo| %>
+        <div class=“carousel-item active”>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        </div>
+      <% end %>
     </div>
     <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
