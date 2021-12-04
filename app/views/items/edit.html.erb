@@ -1,6 +1,6 @@
-<% content_for(:title, "New Item") %>
-<h1>New Item</h1>
-<%= form_with model: @item, url: items_path do |form| %>
+<% content_for(:title, "Edit Item") %>
+<h1>Edit Item</h1>
+<%= form_with model: @item, url: item_path do |form| %>
   <div class="mb-3">
     <%= form.label :title %><br>
     <%= form.text_field :title, class: "form-control", placeholder: "Macbook" %>
