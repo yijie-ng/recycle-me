@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_035606) do
+ActiveRecord::Schema.define(version: 2021_12_06_121742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2021_12_04_035606) do
     t.boolean "requested", default: false
     t.boolean "approved", default: false
     t.boolean "completed", default: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["item_id"], name: "index_exchanges_on_item_id"
     t.index ["user_id"], name: "index_exchanges_on_user_id"
   end
