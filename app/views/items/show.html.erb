@@ -28,7 +28,7 @@
 
   <div class="row">
     <div class="col-8">
-      <div class="card item-show-card bg-light mb-3 mt-4">
+      <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title">
             <h3><%= @item.title %></h3>
@@ -51,7 +51,7 @@
     </div>
 
     <div class="col-4">
-      <div class="card item-show-card bg-light mb-3 mt-4">
+      <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar mb-3" %>
@@ -71,7 +71,7 @@
                     <%= f.input :method, collection: ['Delivery', 'Meet-up'] %>
                     <%= f.input :location, label: 'Meet-up Location/Delivery Address' %>
                     <%= f.input :time_slot, label: 'Meet-up Date & Time', hint: 'YYYY/MM/DD, HH:MM AM/PM (If delivery, "NA")' %>
-                    <%= f.submit 'Send exchange request', class: "btn btn-success", style: "width: 100%" %>
+                    <%= f.submit 'Send exchange request', class: "btn btn-primary", style: "width: 100%" %>
                   <% end %>
                 </div>
             </div>
