@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2021_12_06_121742) do
 
   # These are extensions that must be enabled in order to support this database
@@ -45,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_12_06_121742) do
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "requested", default: false
-    t.boolean "approved", default: false
-    t.boolean "completed", default: false
+    t.boolean "requested"
+    t.boolean "approved"
+    t.boolean "completed"
     t.float "latitude"
     t.float "longitude"
     t.index ["item_id"], name: "index_exchanges_on_item_id"
