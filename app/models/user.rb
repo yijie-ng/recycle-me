@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :exchanges
   has_many :items
 
-  validates :name, length: { minimun: 5, maximum: 50 }, presence: true
-  validates :phone_number, length: { minimun: 8, maximum: 14 }, presence: true
+  validates :name, length: { minimum: 5, maximum: 50 }, presence: true
+  validates :phone_number, length: { minimum: 8, maximum: 14 }, presence: true
 end
