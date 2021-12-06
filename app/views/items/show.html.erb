@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container align-justify-center">
   <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -29,7 +29,7 @@
 
   <div class="row">
     <div class="col-8">
-      <div class="card item-show-card bg-light mb-3 mt-4">
+      <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title">
             <h3><%= @item.title %></h3>
@@ -52,14 +52,14 @@
     </div>
 
     <div class="col-4">
-      <div class="card item-show-card bg-light mb-3 mt-4">
+      <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar mb-3" %>
             <h5 class="ml-2 mb-3"><%= @item.user.name %></h5>
           </div>
           <% if policy(@item).update? && policy(@item).destroy? %>
-            <%= link_to 'View exchange requests', '#', class: "btn btn-success mb-4", style: "width: 100%" %>
+            <%= link_to 'View exchange requests', '#', class: "btn btn-primary mb-4", style: "width: 100%" %>
             <div><i class="far fa-edit mr-2"></i><%= link_to 'Edit Listing', edit_item_path(@item), class: "text-decoration-none" %></div>
             <div class="delete mt-2"><i class="far fa-trash-alt mr-2 text-danger"></i><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger text-decoration-none" %></div>
           <% elsif @exchanges.map { |exchange| exchange.item_id }.include?(@item.id) %>
@@ -71,8 +71,8 @@
                   <%= simple_form_for [ @item, Exchange.new ] do |f| %>
                     <%= f.input :method, collection: ['Delivery', 'Meet-up'] %>
                     <%= f.input :location, label: 'Meet-up Location/Delivery Address' %>
-                    <%= f.input :time_slot, label: 'Meet-up Date & Time', hint: 'YYYY/MM/DD, HH:MM AM/PM (If delivery, "NA")' %>
-                    <%= f.submit 'Send exchange request', class: "btn btn-success", style: "width: 100%" %>
+                    <%= f.input :time_slot, label: 'Meet-up Date & Time', as: :datetime, html5: true %>
+                    <%= f.submit 'Send exchange request', class: "btn btn-primary", style: "width: 100%" %>
                   <% end %>
                 </div>
             </div>

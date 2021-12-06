@@ -10,6 +10,14 @@ class ExchangePolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.user
+    true
+  end
+
+  def index?
+    true
+  end
+
+  def approve?
+    true
   end
 end
