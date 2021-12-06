@@ -24,7 +24,7 @@ User.create!(
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
-    phone_number: Faker::PhoneNumber.phone_number,
+    phone_number: Faker::PhoneNumber.cell_phone,
     password: Faker::Internet.password
   )
 end
@@ -34,7 +34,7 @@ puts "User created"
   Item.create!(
     title: Faker::Lorem.sentence(word_count: 3),
     description: Faker::Lorem.sentence(word_count: 8),
-    condition: Faker::Lorem.sentence(word_count: 1),
+    condition: %w[Excellent Good Average Bad Broken].sample,
     year_made: rand(2000...2021),
     number_available: rand(1..5),
     user_id: 1 + i
