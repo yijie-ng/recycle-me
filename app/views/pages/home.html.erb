@@ -45,10 +45,10 @@
 
 <div class="container-fluid">
   <br>
-  <h2 class="py-3 text-center">All Our Pre-loved Items (<%= @items.length %>)</h2>
+  <h2 class="py-3 text-center">All Our Pre-loved Items (<%= @items_filtered.length %>)</h2>
       <br>
         <div class="row">
-          <% @items.each do |item| %>
+          <% @items_filtered.each do |item| %>
             <div class="col-sm-4 d-flex">
               <div class="card flex-fill py-0 px-0 shadow p-3 mb-5">
                  <div class="card-body">
