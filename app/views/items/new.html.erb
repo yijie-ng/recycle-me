@@ -1,32 +1,36 @@
-<% content_for(:title, "New Item") %>
-<h1>New Item</h1>
-<%= form_with model: @item, url: items_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :title %><br>
-    <%= form.text_field :title, class: "form-control", placeholder: "Macbook" %>
-  </div>
+<div class="container align-justify-center">
 
-  <div class="mb-3">
-    <%= form.label :description %><br>
-    <%= form.text_area :description, class: "form-control", placeholder: "Useful for Students" %>
-  </div>
+  <% content_for(:title, "New Item") %>
+  <h1>New Item</h1>
+  <%= form_with model: @item, url: items_path do |form| %>
+    <div class="mb-3">
+      <%= form.label :title %><br>
+      <%= form.text_field :title, class: "form-control", placeholder: "Macbook" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label :condition %><br>
-    <%= form.text_area :condition, class: "form-control", placeholder: "Excellent" %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :description %><br>
+      <%= form.text_area :description, class: "form-control", placeholder: "Useful for Students" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label :year_made %><br>
-    <%= form.number_field :year_made, class: "form-control", placeholder: "2020" %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :condition %><br>
+      <%= form.text_area :condition, class: "form-control", placeholder: "Excellent" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.label :number_available %><br>
-    <%= form.number_field :number_available, class: "form-control", placeholder: "1" %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :year_made %><br>
+      <%= form.number_field :year_made, class: "form-control", placeholder: "2020" %>
+    </div>
 
-  <div class="mb-3">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="mb-3">
+      <%= form.label :number_available %><br>
+      <%= form.number_field :number_available, class: "form-control", placeholder: "1" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
+</div>
