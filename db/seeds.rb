@@ -7,14 +7,14 @@
 require 'faker'
 
 User.create!(
-  name: 'test',
+  name: 'testaccount',
   email: 'test@test.com',
   phone_number: '123456789',
   password: 'test12345'
 )
 
 User.create!(
-  name: 'test2',
+  name: 'test2account',
   email: 'test2@test.com',
   phone_number: '123456789',
   password: 'test123456'
