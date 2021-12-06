@@ -12,6 +12,13 @@ class ExchangesController < ApplicationController
       item.user_id == current_user.id
     end
     authorize @exchange
+
+    @markers = Exchange.where(user_id: current_user.id).geocoded.map do |exchange|
+      {
+        lat: exchange.latitude,
+        lng: exchange.longitude
+      }
+    end
   end
 
   def create
