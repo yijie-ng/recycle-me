@@ -70,7 +70,7 @@
                   <%= simple_form_for [ @item, Exchange.new ] do |f| %>
                     <%= f.input :method, collection: ['Delivery', 'Meet-up'] %>
                     <%= f.input :location, label: 'Meet-up Location/Delivery Address' %>
-                    <%= f.input :time_slot, label: 'Meet-up Date & Time', hint: 'YYYY/MM/DD, HH:MM AM/PM (If delivery, "NA")' %>
+                    <%= f.input :time_slot, label: 'Meet-up Date & Time', as: :datetime, html5: true %>
                     <%= f.submit 'Send exchange request', class: "btn btn-success", style: "width: 100%" %>
                   <% end %>
                 </div>
