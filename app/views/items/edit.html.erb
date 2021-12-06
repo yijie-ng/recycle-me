@@ -1,32 +1,20 @@
 <% content_for(:title, "Edit Item") %>
 <h1>Edit Item</h1>
-<%= form_with model: @item, url: item_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :title %><br>
-    <%= form.text_field :title, class: "form-control", placeholder: "Macbook" %>
-  </div>
+<%= simple_form_for @item, url: item_path(@item), method: :patch do |f| %>
+  <%= f.error_notification %>
 
-  <div class="mb-3">
-    <%= form.label :description %><br>
-    <%= form.text_area :description, class: "form-control", placeholder: "Useful for Students" %>
-  </div>
+  <%= f.input :title, label: 'Iphone:' %>
 
-  <div class="mb-3">
-    <%= form.label :condition %><br>
-    <%= form.text_area :condition, class: "form-control", placeholder: "Excellent" %>
-  </div>
+  <%= f.input :description, label: 'Useful for Students:' %>
 
-  <div class="mb-3">
-    <%= form.label :year_made %><br>
-    <%= form.number_field :year_made, class: "form-control", placeholder: "2020" %>
-  </div>
+  <%= f.input :condition, label: 'Excellent:' %>
 
-  <div class="mb-3">
-    <%= form.label :number_available %><br>
-    <%= form.number_field :number_available, class: "form-control", placeholder: "1" %>
-  </div>
+  <%= f.input :year_made, label: '2020:' %>
 
-  <div class="mb-3">
-    <%= form.submit %>
-  </div>
+  <%= f.input :number_available, label: '1:' %>
+
+  <%= f.input :photos, as: :file, input_html: { multiple: true }, label: 'Upload photos here:' %>
+
+  <%= f.button :submit, class: "btn-primary" %>
+  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
 <% end %>
