@@ -8,9 +8,9 @@
 
     <%= f.input :description, placeholder: 'Great for student', label:'Description:' %>
 
-    <%= f.input :condition, placeholder: 'Excellent', label:'Condition = Excellent, Good, Average, Bad, Broken:' %>
+    <%= f.input :condition, placeholder: 'Excellent', :collection => %w[Excellent Good Average Bad Broken] %>
 
-    <%= f.input :year_made, placeholder: '2020', label:'Year Made:' %>
+    <%= f.input :year_made, placeholder: '2020', label:'Year Made:', min_max: true %>
 
     <%= f.input :number_available, placeholder: '1', label:'Number Available:' %>
 
