@@ -55,7 +55,11 @@
       <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar mb-3" %>
+            <% if @item.user.photo.attached? %>
+              <%= cl_image_tag @item.user.photo.key, class: "avatar mb-3" %>
+            <% else %>
+              <%= image_tag "http://placekitten.com/g/200/200", class: "avatar mb-3" %>
+            <% end %>
             <h5 class="ml-2 mb-3"><%= @item.user.name %></h5>
           </div>
           <% if policy(@item).update? && policy(@item).destroy? %>
