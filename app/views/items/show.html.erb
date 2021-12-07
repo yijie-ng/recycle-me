@@ -56,7 +56,7 @@
         <div class="card-body m-2">
           <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
             <% if @item.user.photo.attached? %>
-              <%= cl_image_tag @item.user.photo.key, class: "avatar mb-3" %>
+              <%= cl_image_tag @item.user.photo.key, height: 40, width: 40, crop: :fill, class: "avatar mb-3" %>
             <% else %>
               <%= image_tag "http://placekitten.com/g/200/200", class: "avatar mb-3" %>
             <% end %>
