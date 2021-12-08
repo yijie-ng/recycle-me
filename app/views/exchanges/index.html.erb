@@ -1,6 +1,8 @@
-<div class="container-fluid align-justify-center">
-  <h1>Exchanges</h1>
-  <h2>My requests</h2>
+<div class="container align-justify-center">
+  <br>
+  <h1 class="px-3">Exchanges</h1>
+  <h2 class="px-3" id="header-request">My requests</h2>
+  <br>
   <ul>
     <% @user_exchanges.each do |exchange| %>
       <li><%= @items.find(exchange.item_id).title %>
@@ -12,7 +14,8 @@
       </li>
     <% end %>
   </ul>
-  <h2>My items</h2>
+  <br>
+  <h2 class="px-3" id="header-request">My items</h2>
   <ul>
     <% @user_items.each do |item| %>
       <li><%= item.title %>
@@ -34,4 +37,5 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
+
 </div>

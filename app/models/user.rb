@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :exchanges
   has_many :items
+  has_one_attached :photo
 
   validates :name, length: { minimum: 3, maximum: 50 }, presence: true
   validates :phone_number, length: { minimum: 8, maximum: 14 }, presence: true

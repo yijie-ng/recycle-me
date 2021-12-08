@@ -1,30 +1,35 @@
 <div class="container align-justify-center">
   <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <% if @item.photos.length > 1 %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <% else %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <% end %>
     </ol>
     <div class="carousel-inner">
-      <% if @item.photos.attached? %>
-        <% @item.photos.each do |photo| %>
-          <div class=“carousel-item active”>
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          </div>
-        <% end %>
-      <% else %>
-        <%= image_tag "https://images.unsplash.com/photo-1464380573004-8ca85a08751a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", class: "d-block w-100", alt: "user uploaded image 1" %>
+      <div class="carousel-item active">
+        <%= cl_image_tag @item.photos[0].key, crop: :fill, class: "d-block w-100", alt: "user uploaded image" %>
+      </div>
+      <% @item.photos[1..-1].each do |photo| %>
+        <div class="carousel-item">
+          <%= cl_image_tag photo.key, crop: :fill, class: "d-block w-100", alt: "user uploaded image" %>
+        </div>
       <% end %>
     </div>
 
-    <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </button>
+    <% if @item.photos.length > 1 %>
+      <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </button>
+    <% end %>
   </div>
 
   <div class="row">
@@ -55,15 +60,19 @@
       <div class="card item-show-card mb-3 mt-4">
         <div class="card-body m-2">
           <div class="card-title d-flex justify-content-start align-items-center border-bottom mb-3">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar mb-3" %>
-            <h5 class="ml-2 mb-3"><%= @item.user.name %></h5>
+            <% if @item.user.photo.attached? %>
+              <%= cl_image_tag @item.user.photo.key, height: 40, width: 40, crop: :fill, class: "avatar mb-3" %>
+            <% else %>
+              <%= image_tag "http://placekitten.com/g/200/200", class: "avatar mb-3" %>
+            <% end %>
+              <h5 class="ml-2 mb-3"><%= @item.user.name %></h5>
           </div>
           <% if policy(@item).update? && policy(@item).destroy? %>
-            <%= link_to 'View exchange requests', '#', class: "btn btn-primary mb-4", style: "width: 100%" %>
+            <%= link_to 'View exchange requests', exchanges_path, class: "btn btn-primary mb-4", style: "width: 100%" %>
             <div><i class="far fa-edit mr-2"></i><%= link_to 'Edit Listing', edit_item_path(@item), class: "text-decoration-none" %></div>
             <div class="delete mt-2"><i class="far fa-trash-alt mr-2 text-danger"></i><%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-danger text-decoration-none" %></div>
           <% elsif @exchanges.map { |exchange| exchange.item_id }.include?(@item.id) %>
-            <div>Sorry! Not available anymore</div>
+            <div>Request pending confirmation...</div>
           <% else %>
             <div class="exchange-form mt-4">
               <h3>Exchange request</h3>
