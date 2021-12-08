@@ -9,9 +9,9 @@
     <%= form_tag root_path, method: :get do %>
       <%= text_field_tag :query,
       params[:query],
-      class: "d-flex align-items-center form-inline my-1 mr-sm-2",
+      class: "form-line align-items-center py-1 mx-1",
       placeholder: "Find an item" %>
-      <%= submit_tag "Search", class: "btn btn-outline-light my-2 my-sm-0" %>
+      <%= submit_tag "Search", class: "btn btn-outline-light" %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
