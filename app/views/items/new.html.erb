@@ -14,9 +14,9 @@
 
     <%= f.input :number_available, placeholder: '1', label:'Number Available:', min_max: true %>
 
-    <%= f.input :photos, as: :file, input_html: { multiple: true }, label:'Upload Photos' %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true }, class:'btn-primary', label:'Upload Photos' %>
 
-    <%= f.button :submit, class: "btn-primary" %>
-    <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= f.button :button, "Cancel", type: "reset", class: "btn btn-outline-primary" %>
   <% end %>
 </div>
