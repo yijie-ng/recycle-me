@@ -13,10 +13,11 @@ class ExchangesController < ApplicationController
     end
     authorize @exchange
 
-    @markers = Exchange.where(user_id: current_user.id).geocoded.map do |exchange|
+    @markers = Exchange.joins(:item).where("items.user_id = #{current_user.id} OR exchanges.user_id = #{current_user.id} AND (exchanges.requested = true OR exchanges.approved = true)").geocoded.map do |exchange|
       {
         lat: exchange.latitude,
-        lng: exchange.longitude
+        lng: exchange.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { exchange: exchange })
       }
     end
   end
@@ -25,6 +26,7 @@ class ExchangesController < ApplicationController
     @exchange = Exchange.new(exchanges_params)
     @exchange.item = @item
     @exchange.user = current_user
+    @exchange.requested = true
     authorize @exchange
 
     if @exchange.save
