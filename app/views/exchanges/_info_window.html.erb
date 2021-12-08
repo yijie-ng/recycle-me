@@ -1,0 +1,8 @@
+<h2><%= @items.find(exchange.item_id).title %></h2>
+<p><%= exchange.location %></p>
+<p><%= exchange.time_slot %></p>
+<% if exchange.approved %>
+<p>Transaction Approved</p>
+<% else %>
+<p>Someone wants to trade with you!</p>
+<% end %>
