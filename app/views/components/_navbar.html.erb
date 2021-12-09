@@ -9,7 +9,7 @@
     <%= form_tag root_path, method: :get do %>
       <%= text_field_tag :query,
       params[:query],
-      class: "form-line align-items-center py-1 mx-1",
+      class: "form-line form-control-lg align-items-center",
       placeholder: "Find an item" %>
       <%= submit_tag "Search", class: "btn btn-outline-light" %>
     <% end %>
@@ -27,7 +27,7 @@
         <li class="nav-item">
           <%= link_to "My Exchanges", exchanges_path, class: "nav-link text-light" %>
         </li>
-        <li class="nav-new-item">
+        <li class="nav-new-item px-1">
           <%= link_to "Create New Listing", new_item_path, class: "nav-link text-light" %>
         </li>
         <li class="nav-item dropdown">
@@ -36,9 +36,9 @@
           <% else %>
             <%= image_tag "http://placekitten.com/g/200/200", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item text-success" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-success" %>
+          <div class="dropdown-menu dropdown-menu-right" id="dropdown-color" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item text-light" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item text-light" %>
           </div>
         </li>
       <% else %>
