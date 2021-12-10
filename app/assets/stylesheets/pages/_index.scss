@@ -5,6 +5,11 @@
   background-color:$semi-dark-green !important;
   border-color:$semi-dark-green !important;
   color: white;
+
+  &:hover {
+    background-color: #308657 !important;
+    border-color: #308657 !important;
+  }
 }
 
 #header-request {
