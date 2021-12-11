@@ -14,9 +14,13 @@ class PagesController < ApplicationController
       @exchanges.include?(item.id)
     end
 
-    session[:count] = Exchange.joins(:item).where("(items.user_id = #{current_user.id}
+
+    if current_user.present?
+      session[:count] = Exchange.joins(:item).where("(items.user_id = #{current_user.id}
     OR exchanges.user_id = #{current_user.id}) AND exchanges.requested = true
     AND exchanges.approved = false").count
-
+    else
+      @count = ""
+    end 
   end
 end
