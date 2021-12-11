@@ -1,4 +1,5 @@
 <div class="container align-justify-center">
+  <br>
   <% content_for(:title, "New Item") %>
   <h1>New Item</h1>
   <%= simple_form_for @item, url: items_path do |f| %>
@@ -17,6 +18,6 @@
     <%= f.input :photos, as: :file, input_html: { multiple: true }, class:'btn-primary', label:'Upload Photos' %>
 
     <%= f.button :submit, class: "btn btn-primary" %>
-    <%= f.button :button, "Cancel", type: "reset", class: "btn btn-outline-primary" %>
+    <%= link_to 'Cancel', root_path, class: "btn btn-outline-primary" %>
   <% end %>
 </div>

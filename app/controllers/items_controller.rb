@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
   # GET /items/:id
   def show
     @exchanges = Exchange.all
+    @exchange = @exchanges.find_by(item_id: @item.id)
   end
 
   # GET /items/new

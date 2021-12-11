@@ -5,9 +5,30 @@
   background-color:$semi-dark-green !important;
   border-color:$semi-dark-green !important;
   color: white;
+
+  &:hover {
+    background-color: #308657 !important;
+    border-color: #308657 !important;
+  }
 }
 
 #header-request {
   background-color: $semi-dark-green;
+  color: white;
+}
+
+#carouselExampleIndicators {
+  border:10px solid $lighter-green;
+}
+
+#map {
+  border:10px solid $lighter-green;
+}
+
+#dropdown-color {
+  background-color: $semi-dark-green;
+}
+
+#dropdown-font {
   color: white;
 }
