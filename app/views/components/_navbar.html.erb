@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item">
           <%= link_to exchanges_path, class: "nav-link text-light" do %>
-            My Exchanges <%= content_tag :span, @count, class: "badge badge-pill badge-primary" %>
+            My Exchanges <%= content_tag :span, session[:count], class: "badge badge-success" %>
           <% end %>
           <%# <%= link_to "My Exchanges", exchanges_path, class: "nav-link text-light" %>
         </li>
