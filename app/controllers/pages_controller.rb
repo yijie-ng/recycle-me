@@ -7,9 +7,16 @@ class PagesController < ApplicationController
     else
       @items = Item.all
     end
+
     @exchanges = Exchange.all.map(&:item_id)
+
     @items_filtered = @items.reject do |item|
       @exchanges.include?(item.id)
     end
+
+    @count = Exchange.joins(:item).where("(items.user_id = #{current_user.id}
+    OR exchanges.user_id = #{current_user.id}) AND exchanges.requested = true
+    AND exchanges.approved = false").count
+
   end
 end
