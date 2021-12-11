@@ -32,4 +32,8 @@ class ExchangePolicy < ApplicationPolicy
   def return_markers
     true
   end
+
+  def destroy?
+    true
+  end
 end
