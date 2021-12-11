@@ -10,5 +10,8 @@ Rails.application.routes.draw do
     member do
       post 'approve'
     end
+    member do
+      post 'complete'
+    end
   end
 end

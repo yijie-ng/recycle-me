@@ -16,7 +16,6 @@
           <%= exchange.method %> with
         <% end %>
       <%= User.find(@items.find(exchange.item_id).user_id).name %> confirmed at <%= exchange.location %> on <%= exchange.time_slot.split('T').first %>, <%= exchange.time_slot.split('T').last %>
-      <%= link_to "Completed?", "#", method: :post, class: "btn btn-primary" %>
       <% else %>
         <i class="far fa-paper-plane"></i>
       <% end %>
@@ -40,6 +39,7 @@
             <%= @exchange.find_by(item_id: item.id).method %> with
           <% end %>
           <%= User.find(@exchange.find_by(item_id: item.id).user_id).name %> confirmed at <%= @exchange.find_by(item_id: item.id).location %> on <%= @exchange.find_by(item_id: item.id).time_slot.split('T').first %>, <%= @exchange.find_by(item_id: item.id).time_slot.split('T').last %>
+          <%= link_to "Transaction Completed", complete_exchange_path(@exchange.find_by(item_id: item.id)), method: :post, class: "btn btn-primary" %>
         <% else %>
           <i class="far fa-envelope"></i> <%= User.find(@exchange.find_by(item_id: item.id).user_id).name %> sent an exchange request.
           <%= link_to "Agree to Trade", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post, class: "btn btn-primary" %>
