@@ -1,8 +1,19 @@
 <h2><%= @items.find(exchange.item_id).title %></h2>
+<p><%= exchange.method %></p>
 <p><%= exchange.location %></p>
-<p><%= exchange.time_slot %></p>
-<% if exchange.approved %>
-<p>Transaction Approved</p>
+</p><%= exchange.time_slot.split('T').first %>, <%= exchange.time_slot.split('T').last %><p>
+<% if exchange.user_id == @current_user.id %>
+  <p>Owner: <%= User.find(Item.find(exchange.item_id).user_id).name %> </p>
+  <% if exchange.approved %>
+  <p>Transaction Approved</p>
+  <% else %>
+  <p>Waiting for owner to respond!</p>
+  <% end %>
 <% else %>
-<p>Someone wants to trade with you!</p>
+  <p>Requestor: <%= User.find(exchange.user_id).name %></p>
+  <% if exchange.approved %>
+  <p>Transaction Approved</p>
+  <% else %>
+  <p>Someone wants to trade with you!</p>
+  <% end %>
 <% end %>
