@@ -1,0 +1,33 @@
+.top-link {
+  transition: all .25s ease-in-out;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  display: inline-flex;
+  cursor: pointer;
+  z-index: 99;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+	.fa-chevron-circle-up {
+		color: $dark-green;
+    opacity: 0.8;
+	}
+
+	&:hover {
+    text-decoration: none;
+
+		.fa-chevron-circle-up {
+			color: $dark-green;
+      opacity: 1;
+		}
+	}
+}

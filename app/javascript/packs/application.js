@@ -29,9 +29,16 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import { scrollFunc } from '../plugins/scroll_to_top';
+import { initscrollToTop } from '../plugins/scroll_to_top';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initMapbox();
   initAutocomplete();
+  AOS.init();
+  scrollFunc();
+  initscrollToTop();
 });

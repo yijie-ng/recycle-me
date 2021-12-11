@@ -1,14 +1,21 @@
 <div class="container align-justify-center">
   <br>
-  <h1 class="px-3">Exchanges</h1>
+  <h1 class="px-0">Exchanges</h1>
   <h2 class="px-3" id="header-request">My requests</h2>
   <br>
   <ul>
     <% @user_exchanges.each do |exchange| %>
-      <li><%= @items.find(exchange.item_id).title %>
-      <% if exchange.approved %>
-        <i class="far fa-check-circle"></i> Ready for collection at <%= exchange.location %> on <%= exchange.time_slot %>
-        <%# <%= link_to "Transaction Complete", complete_exchange_path(exchange, method: :post) %>
+      <li><%= link_to @items.find(exchange.item_id).title, item_path(exchange.item_id) %>
+      <% if exchange.completed %>
+        <i class="fas fa-recycle"></i> Exchange is completed!
+      <% elsif exchange.approved %>
+      <i class="far fa-check-circle"></i>
+        <% if exchange.method == "Delivery" %>
+          <%= exchange.method %> from
+        <% else %>
+          <%= exchange.method %> with
+        <% end %>
+      <%= User.find(@items.find(exchange.item_id).user_id).name %> confirmed at <%= exchange.location %> on <%= exchange.time_slot.split('T').first %>, <%= exchange.time_slot.split('T').last %>
       <% else %>
         <i class="far fa-paper-plane"></i>
       <% end %>
@@ -17,27 +24,42 @@
   </ul>
   <br>
   <h2 class="px-3" id="header-request">My items</h2>
+  <br>
   <ul>
     <% @user_items.each do |item| %>
-      <li><%= item.title %>
+      <li><%= link_to item.title, item_path(item) %>
       <% if @exchange.find_by(item_id: item.id)%>
-        <% if (@exchange.find_by(item_id: item.id).approved) && !@exchange.find_by(item_id: item.id).completed%>
-          <i class="far fa-check-circle"></i> Ready for delivery at <%= @exchange.find_by(item_id: item.id).location %> on <%= @exchange.find_by(item_id: item.id).time_slot %>
-          <%= link_to "Transaction Completed", complete_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
+        <% if @exchange.find_by(item_id: item.id).completed %>
+          <i class="fas fa-recycle"></i> Item successfully recycled!
+        <% elsif @exchange.find_by(item_id: item.id).approved %>
+          <i class="far fa-check-circle"></i>
+          <% if @exchange.find_by(item_id: item.id).method == "Delivery" %>
+            <%= @exchange.find_by(item_id: item.id).method %> for
+          <% else %>
+            <%= @exchange.find_by(item_id: item.id).method %> with
+          <% end %>
+          <%= User.find(@exchange.find_by(item_id: item.id).user_id).name %> confirmed at <%= @exchange.find_by(item_id: item.id).location %> on <%= @exchange.find_by(item_id: item.id).time_slot.split('T').first %>, <%= @exchange.find_by(item_id: item.id).time_slot.split('T').last %>
+          <%= link_to "Transaction Completed", complete_exchange_path(@exchange.find_by(item_id: item.id)), method: :post, class: "btn btn-primary" %>
         <% else %>
-          <%= link_to "Agree to Trade", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
+          <i class="far fa-envelope"></i> <%= User.find(@exchange.find_by(item_id: item.id).user_id).name %> sent an exchange request.
+          <%= link_to "Agree to Trade", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post, class: "btn btn-primary" %>
+          <%= link_to "Decline", "#", method: :post, class: "btn btn-danger" %>
         <% end %>
-        <% else  %>
+      <% else  %>
         <i class="far fa-paper-plane"></i>
-        <% end %>
-      </li> 
+      <% end %>
+      </li>
     <% end %>
   </ul>
+  <br>
+  <h2 class="px-3" id="header-request">Location of Exchanges</h2>
+  <br>
 
-  <div id="map"
-      style="width: 60%; height: 600px;"
+  <div class="container" id="map"
+      style="width: 75%; height: 700px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
   </div>
+  <br>
 
 </div>
