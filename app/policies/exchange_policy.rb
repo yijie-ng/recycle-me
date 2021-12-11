@@ -20,4 +20,16 @@ class ExchangePolicy < ApplicationPolicy
   def approve?
     true
   end
+
+  def complete?
+    true
+  end
+
+  def return_filtered_items
+    true
+  end
+
+  def return_markers
+    true
+  end
 end

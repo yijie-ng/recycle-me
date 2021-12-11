@@ -2,24 +2,14 @@ class ExchangesController < ApplicationController
   before_action :set_item, only: [:create]
 
   def index
-    # @exchanges = policy_scope(Exchange).order(created_at: :desc) #not sure how to use this currently
-    @exchange = policy_scope(Exchange)
+    @exchange = policy_scope(Exchange.where.not(completed: true))
     @items = policy_scope(Item)
     @user_exchanges = @exchange.select do |exchange|
       exchange.user_id == current_user.id
     end
-    @user_items = @items.select do |item|
-      item.user_id == current_user.id
-    end
+    @user_items = return_filtered_items(@items)
+    @markers = return_markers
     authorize @exchange
-
-    @markers = Exchange.joins(:item).where("items.user_id = #{current_user.id} OR exchanges.user_id = #{current_user.id} AND (exchanges.requested = true OR exchanges.approved = true)").geocoded.map do |exchange|
-      {
-        lat: exchange.latitude,
-        lng: exchange.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { exchange: exchange })
-      }
-    end
   end
 
   def create
@@ -34,20 +24,17 @@ class ExchangesController < ApplicationController
     end
   end
 
-  # def update
-  #   @exchange = Exchange.find(params[:id])
-  #   if @exchange.update(exchanges_params)
-  #     flash[:success] = "Exchange updated"
-  #     redirect_to exchanges_path
-  #   else
-  #     render exchanges_path
-  #   end
-  #   authorize @exchange
-  # end
-
   def approve
     @exchange = Exchange.find(params[:id])
     @exchange.approved = true
+    @exchange.save
+    authorize @exchange
+    redirect_to exchanges_path, flash: { success: "Message" }
+  end
+
+  def complete
+    @exchange = Exchange.find(params[:id])
+    @exchange.completed = true
     @exchange.save
     authorize @exchange
     redirect_to exchanges_path, flash: { success: "Message" }
@@ -61,5 +48,30 @@ class ExchangesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def return_markers
+    Exchange.joins(:item).where("(items.user_id = #{current_user.id}
+      OR exchanges.user_id = #{current_user.id}) AND exchanges.requested = true
+      AND exchanges.completed = false").geocoded.map do |exchange|
+      {
+        lat: exchange.latitude,
+        lng: exchange.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { exchange: exchange })
+      }
+    end
+  end
+
+  def return_filtered_items(items)
+    @exchange_completed = policy_scope(Exchange.where(completed: true))
+    @exchange_completed_id = @exchange_completed.map do |exchange|
+      exchange.item_id
+    end
+    @user_items = items.select do |item|
+      item.user_id == current_user.id
+    end
+    @user_items = @user_items.reject do |item|
+      @exchange_completed_id.include?(item.id)
+    end
   end
 end

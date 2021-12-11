@@ -8,6 +8,7 @@
       <li><%= @items.find(exchange.item_id).title %>
       <% if exchange.approved %>
         <i class="far fa-check-circle"></i> Ready for collection at <%= exchange.location %> on <%= exchange.time_slot %>
+        <%# <%= link_to "Transaction Complete", complete_exchange_path(exchange, method: :post) %>
       <% else %>
         <i class="far fa-paper-plane"></i>
       <% end %>
@@ -20,8 +21,9 @@
     <% @user_items.each do |item| %>
       <li><%= item.title %>
       <% if @exchange.find_by(item_id: item.id)%>
-        <% if @exchange.find_by(item_id: item.id).approved %>
+        <% if (@exchange.find_by(item_id: item.id).approved) && !@exchange.find_by(item_id: item.id).completed%>
           <i class="far fa-check-circle"></i> Ready for delivery at <%= @exchange.find_by(item_id: item.id).location %> on <%= @exchange.find_by(item_id: item.id).time_slot %>
+          <%= link_to "Transaction Completed", complete_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
         <% else %>
           <%= link_to "Agree to Trade", approve_exchange_path(@exchange.find_by(item_id: item.id)), method: :post %>
         <% end %>
