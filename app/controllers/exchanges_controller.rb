@@ -40,6 +40,13 @@ class ExchangesController < ApplicationController
     redirect_to exchanges_path, flash: { success: "Message" }
   end
 
+  def destroy
+    @exchange = Exchange.find(params[:id])
+    @exchange.destroy
+    authorize @exchange
+    redirect_to exchanges_path, flash: { success: "Message" }
+  end
+
   private
 
   def exchanges_params
