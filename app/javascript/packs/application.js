@@ -40,3 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   AOS.init();
   initscrollToTop();
 });
+
+window.addEventListener('load', AOS.refresh)
